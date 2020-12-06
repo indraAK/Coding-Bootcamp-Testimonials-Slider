@@ -25,18 +25,18 @@ const buttons = document.querySelectorAll('.btn-control');
 const figureElement = document.querySelector('.figure');
 let index = 0;
 
-function handleTestimonials() {
+function handleTestimonials({ key }) {
    // tombol button yg diklik saat ini
    const currentButton = this;
 
-   // cek jika elemen button yg diklik saat ini idnya adalah prev
-   if (currentButton.id === 'prev') {
+   // cek jika elemen button yg diklik saat ini idnya adalah prev atau keyboard yg dipencet adalah ArrowLeft
+   if (currentButton.id === 'prev' || key === 'ArrowLeft') {
       index -= 1;
       index < 0 ? index = testimonials.length - 1 : index;
    }
 
-   // cek jika elemen button yg diklik saat ini idnya adalah next
-   if (currentButton.id === 'next') {
+   // cek jika elemen button yg diklik saat ini idnya adalah next atau keyboard yg dipencet adalah ArrowRight
+   if (currentButton.id === 'next' || key === 'ArrowRight') {
       index += 1;
       index > testimonials.length - 1 ? index = 0 : index;
    }
@@ -66,3 +66,4 @@ function handleTestimonials() {
 }
 
 buttons.forEach(button => button.addEventListener('click', handleTestimonials));
+window.addEventListener('keydown', handleTestimonials);
